@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 export default function MotionEffects() {
   useEffect(() => {
+    document.documentElement.classList.add("motion-ready");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const revealItems = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
 
@@ -60,6 +61,7 @@ export default function MotionEffects() {
     }
 
     return () => {
+      document.documentElement.classList.remove("motion-ready");
       observer.disconnect();
       cleanups.forEach((cleanup) => cleanup());
     };
